@@ -1,27 +1,94 @@
-# NgbIbp
+# ngb-ibp - API demos using Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+## Getting started for users
 
-## Development server
+Live version here: [site](https://apidemos.vsoft.be)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## API Sources used for this app
 
-## Code scaffolding
+- [NovelCOVID/API](https://github.com/novelcovid/api) - [API Reference](https://corona.lmao.ninja/docs/)
+- [Sector Catalog](http://app.sectorcatalog.be/SectorCatalog/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting started for developers
 
-## Build
+- [Install NodeJS](https://nodejs.org/). Hint: eventually install and use [nvm](https://medium.com/@Joachim8675309/installing-node-js-with-nvm-4dc469c977d9) for easy installing and/or switching between node versions
+- Clone this repository: `git clone https://github.com/openSource4Brokers/ngb-ibp`.
+- Run `npm install` inside the project root.
+- Run `ng serve` in a terminal from the project root.
+- Profit. :tada:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Development Tools used for this app
 
-## Running unit tests
+- [NodeJS](https://nodejs.org/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Angular CLI](https://www.npmjs.com/package/@angular/cli): `npm i -g @angular/cli`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## NPM packages used for this app
 
-## Running end-to-end tests
+- [bootstrap](https://www.npmjs.com/package/bootstrap): `npm i bootstrap`
+- [bootswatch](https://www.npmjs.com/package/bootswatch): `npm i bootswatch`
+- [jquery](https://www.npmjs.com/package/jquery): `npm i jquery`
+- [fontawesome angular](https://www.npmjs.com/package/@fortawesome/angular-fontawesome): `npm i @fortawesome/angular-fontawesome`
+- [fontawesome svg core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core): `npm i @fortawesome/fontawesome-svg-core`
+- [fontawesome free sold svg icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons): `npm i @fortawesome/free-solid-svg-icons`
+- [bootstrap icons](https://www.npmjs.com/package/bootstrap-icons): `npm i bootstrap-icons`
+- [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap): `npm i ngx-bootstrap`
+- [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core): `npm i @ngx-translate/core`
+- [@ngx-translate/http-loader](https://www.npmjs.com/package/@ngx-translate/http-loader): `npm i @ngx-translate/http-loader`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- install all packages in one commandline: `npm i bootstrap bootswatch jquery @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons bootstrap-icons ngx-bootstrap @ngx-translate/core @ngx-translate/http-loader`
 
-## Further help
+## file styles.css
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+For use of bootstrap, add into file styles.css:
+
+```bash
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+```
+
+## warnings for chart.js
+
+In angular.json, to avoid CommonJs warnings in development mode, add **allowedCommonJsDependencies** in the options section for **chart.js**:
+
+```json
+"builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            ...
+            "allowedCommonJsDependencies": [
+              "chart.js"
+            ],
+            ...
+```
+
+## file angular.json scripts
+
+For use of js from bootstrap and jquiry, add into scripts section:
+
+```bash
+"scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+```
+
+## tsconfig.json changes for using version stamp in app
+
+Before building, set resolveJsonModule to 'true' :
+
+```bash
+"compilerOptions": {
+    ...
+    "resolveJsonModule": true,
+    ...
+```
+
+## Good practice 1: use lazy loading modules
+
+- Ex. sector-catalog module in modules folder: `ng generate module modules/sector-catalog --route sector-catalog --module app.module`
+- Ex. corona module: `ng generate module modules/corona --route corona --module app.module`
+
+## Good practice 2: Update and check Angular X as needed
+
+This app is on Angular 16. Update to latest Angular 16 with:
+`ng update @angular/cli@16 @angular/core@16`
+
+Follow the instructions eventualy for fixes
